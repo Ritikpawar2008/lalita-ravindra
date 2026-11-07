@@ -16,7 +16,7 @@ export const CeremonyTimeline: React.FC = () => {
   const events: TimelineEvent[] = [
     {
       id: 1,
-      title: 'गणेश आणि सुपारी',
+      title: 'गणेश पूजा आणि सुपारी',
       time: 'सकाळी १०:३० वाजता',
       timeEn: '10:30 AM',
       marathiNum: '१',

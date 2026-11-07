@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { motion } from 'framer-motion';
-import { MapPin, Navigation, ExternalLink, Copy, Check, Phone } from 'lucide-react';
+import { MapPin, Navigation, ExternalLink, Copy, Check } from 'lucide-react';
 import { invitationData } from '../config/invitationData';
 
 export const VenueLocation: React.FC = () => {
@@ -54,7 +54,7 @@ export const VenueLocation: React.FC = () => {
         transition={{ duration: 0.55 }}
         className="text-xl sm:text-2xl font-marathi-title font-extrabold text-transparent bg-clip-text bg-gradient-to-r from-[#ffd700] via-[#fef08a] to-[#f59e0b] tracking-wide mb-1 drop-shadow-sm"
       >
-        विवाह व साखरपुडा स्थळ
+        साखरपुडा स्थळ
       </motion.h3>
 
       <p className="text-[11px] sm:text-xs font-marathi-serif text-[#ffd700]/80 tracking-wider mb-6 italic">
@@ -206,17 +206,6 @@ export const VenueLocation: React.FC = () => {
             <Navigation className="w-4 h-4 text-[#1a2717] group-hover:rotate-45 transition-transform" />
             <span className="tracking-wide">नकाशावर पहा • Get Directions</span>
             <ExternalLink className="w-3.5 h-3.5 text-[#1a2717]/80 ml-0.5" />
-          </a>
-        </div>
-
-        {/* Optional Venue Contact Quick Action */}
-        <div className="mt-3 flex items-center justify-center gap-2 text-center">
-          <a
-            href="tel:09420588240"
-            className="inline-flex items-center gap-1.5 text-[11px] font-marathi-serif text-[#fef08a]/85 hover:text-[#ffd700] transition-colors"
-          >
-            <Phone className="w-3 h-3 text-[#ffd700]" />
-            <span>स्थळ संपर्क: ०९४२०५ ८८२४० (094205 88240)</span>
           </a>
         </div>
 

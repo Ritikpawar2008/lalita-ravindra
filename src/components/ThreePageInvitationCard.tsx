@@ -5,6 +5,7 @@ import { ChevronRight, ChevronLeft, RotateCcw } from 'lucide-react';
 import { EventCountdown } from './EventCountdown';
 import { CeremonyTimeline } from './CeremonyTimeline';
 import { VenueLocation } from './VenueLocation';
+import { FamilyContacts } from './FamilyContacts';
 
 interface ThreePageInvitationCardProps {
   onReplay: () => void;
@@ -190,6 +191,9 @@ export const ThreePageInvitationCard: React.FC<ThreePageInvitationCardProps> = (
 
                 {/* 4. Event Date & Live Countdown Section Below */}
                 <EventCountdown />
+
+                {/* 5. Family Contacts Section at the End */}
+                <FamilyContacts />
               </div>
             ) : (
               /* Pages 1 & 2: Full-screen exact artwork images */
