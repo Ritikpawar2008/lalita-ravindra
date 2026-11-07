@@ -226,12 +226,26 @@ export const ThreePageInvitationCard: React.FC<ThreePageInvitationCardProps> = (
                 <FamilyContacts />
               </div>
             ) : currentPage === 2 ? (
-              /* Page 2: Newly Supplied 4th.png Invitation Artwork with object-fit: contain */
-              <div className="relative w-full h-full min-h-[100vh] h-[100dvh] flex items-center justify-center pt-[max(56px,calc(env(safe-area-inset-top,0px)+50px))] pb-[max(80px,calc(env(safe-area-inset-bottom,0px)+74px))] px-2 sm:px-4 overflow-hidden pointer-events-auto">
+              /* Page 2: Full-Screen Edge-to-Edge 4th.png Invitation Artwork */
+              <div className="relative w-full h-full min-h-[100vh] h-[100dvh] w-[100vw] flex items-center justify-center overflow-hidden pointer-events-auto">
+                {/* Desktop ambient warm glow backdrop — prevents black gaps on ultra-wide / landscape displays */}
+                <div 
+                  className="hidden md:block absolute inset-0 w-full h-full overflow-hidden pointer-events-none z-0"
+                  aria-hidden="true"
+                >
+                  <img
+                    src="/images/4th.png"
+                    alt=""
+                    className="w-full h-full object-cover object-center filter blur-3xl scale-125 opacity-40 brightness-75"
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-b from-[#0d0207]/60 via-transparent to-[#0d0207]/80" />
+                </div>
+
+                {/* Main Full-Screen Invitation Artwork */}
                 <img
                   src="/images/4th.png"
                   alt="साखरपुडा सोहळा - ची.सौ.कां. ललिता आणि ची. रवींद्र"
-                  className="w-full h-full max-h-full max-w-full object-contain object-center pointer-events-none drop-shadow-[0_16px_50px_rgba(0,0,0,0.95)]"
+                  className="relative z-10 w-full h-full min-h-[100vh] h-[100dvh] object-cover object-center pointer-events-none md:w-auto md:max-w-full md:h-full md:object-contain drop-shadow-[0_0_50px_rgba(0,0,0,0.9)]"
                 />
               </div>
             ) : (
