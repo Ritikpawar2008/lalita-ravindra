@@ -103,7 +103,7 @@ export const ThreePageInvitationCard: React.FC<ThreePageInvitationCardProps> = (
 
   const pages = [
     { id: 1, src: '/images/3rd.png', alt: '॥ श्री गणेशाय नमः ॥ - Ganpati Bappa Welcome' },
-    { id: 2, src: '/images/4th.png', alt: 'साखरपुडा सोहळा - Bride & Groom Sakharpuda' },
+    { id: 2, src: '/images/4th.jpeg', alt: 'साखरपुडा सोहळा - Bride & Groom Sakharpuda' },
     { id: 3, src: '/images/5th.png', alt: '॥ निमंत्रण ॥ - Family Invitation' },
   ];
 
@@ -243,7 +243,7 @@ export const ThreePageInvitationCard: React.FC<ThreePageInvitationCardProps> = (
 
                 {/* Main Full-Screen Invitation Artwork */}
                 <img
-                  src="/images/4th.png"
+                  src="/images/4th.jpeg"
                   alt="साखरपुडा सोहळा - ची.सौ.कां. ललिता आणि ची. रवींद्र"
                   className="relative z-10 w-full h-full min-h-[100vh] h-[100dvh] object-cover object-center pointer-events-none md:w-auto md:max-w-full md:h-full md:object-contain drop-shadow-[0_0_50px_rgba(0,0,0,0.9)]"
                 />
