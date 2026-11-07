@@ -1,7 +1,7 @@
 import React, { useState, useRef } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import type { Variants } from 'framer-motion';
-import { ChevronRight, ChevronLeft, RotateCcw } from 'lucide-react';
+import { ChevronRight, ChevronLeft, RotateCcw, Volume2, VolumeX } from 'lucide-react';
 import { EventCountdown } from './EventCountdown';
 import { CeremonyTimeline } from './CeremonyTimeline';
 import { VenueLocation } from './VenueLocation';
@@ -18,8 +18,25 @@ export const ThreePageInvitationCard: React.FC<ThreePageInvitationCardProps> = (
 }) => {
   const [currentPage, setCurrentPage] = useState<1 | 2 | 3>(initialPage);
   const [direction, setDirection] = useState<number>(1);
+  const [isMuted, setIsMuted] = useState<boolean>(false);
   const touchStartX = useRef<number | null>(null);
   const touchStartY = useRef<number | null>(null);
+
+  const toggleAudio = () => {
+    const audio = document.getElementById('bgMusic') as HTMLAudioElement | null;
+    if (audio) {
+      if (audio.paused || audio.muted) {
+        audio.muted = false;
+        audio.play().catch(() => {});
+        setIsMuted(false);
+      } else {
+        audio.pause();
+        setIsMuted(true);
+      }
+    } else {
+      setIsMuted(!isMuted);
+    }
+  };
 
   const goToPage = (page: 1 | 2 | 3) => {
     if (page < 1 || page > 3 || page === currentPage) return;
@@ -99,7 +116,7 @@ export const ThreePageInvitationCard: React.FC<ThreePageInvitationCardProps> = (
       
       {/* Top Floating Controls Bar with Safe-Area Inset Support */}
       <div 
-        className="fixed inset-x-0 z-40 flex items-center justify-between px-3 sm:px-5 max-w-[480px] mx-auto pointer-events-auto"
+        className="fixed inset-x-0 w-full max-w-[480px] mx-auto z-40 flex items-center justify-between px-3.5 sm:px-5 pointer-events-auto"
         style={{
           top: 'max(12px, calc(env(safe-area-inset-top, 0px) + 8px))',
         }}
@@ -124,16 +141,29 @@ export const ThreePageInvitationCard: React.FC<ThreePageInvitationCardProps> = (
           </span>
         </div>
 
-        {/* Restart Ceremony Icon */}
-        <button
-          type="button"
-          onClick={onReplay}
-          aria-label="पुन्हा पहा"
-          className="p-2 rounded-full bg-[#230510]/90 text-[#ffd700] hover:text-white border border-[#d4af37]/60 shadow-[0_4px_16px_rgba(0,0,0,0.6)] backdrop-blur-md transition-all active:scale-95 cursor-pointer"
-          title="पुन्हा सुरु करा (Restart Ceremony)"
-        >
-          <RotateCcw className="w-4 h-4" />
-        </button>
+        <div className="flex items-center gap-2">
+          {/* Background Music Mute / Unmute Button */}
+          <button
+            type="button"
+            onClick={toggleAudio}
+            aria-label={isMuted ? "संगीत सुरु करा (Unmute music)" : "संगीत बंद करा (Mute music)"}
+            className="p-2 rounded-full bg-[#230510]/90 text-[#ffd700] hover:text-white border border-[#d4af37]/60 shadow-[0_4px_16px_rgba(0,0,0,0.6)] backdrop-blur-md transition-all active:scale-95 cursor-pointer"
+            title={isMuted ? "संगीत सुरु करा" : "संगीत बंद करा"}
+          >
+            {isMuted ? <VolumeX className="w-4 h-4" /> : <Volume2 className="w-4 h-4" />}
+          </button>
+
+          {/* Restart Ceremony Icon */}
+          <button
+            type="button"
+            onClick={onReplay}
+            aria-label="पुन्हा पहा"
+            className="p-2 rounded-full bg-[#230510]/90 text-[#ffd700] hover:text-white border border-[#d4af37]/60 shadow-[0_4px_16px_rgba(0,0,0,0.6)] backdrop-blur-md transition-all active:scale-95 cursor-pointer"
+            title="पुन्हा सुरु करा (Restart Ceremony)"
+          >
+            <RotateCcw className="w-4 h-4" />
+          </button>
+        </div>
       </div>
 
       {/* Full-Screen Edge-to-Edge Invitation Page Viewport with 3D Perspective */}
@@ -195,8 +225,17 @@ export const ThreePageInvitationCard: React.FC<ThreePageInvitationCardProps> = (
                 {/* 5. Family Contacts Section at the End */}
                 <FamilyContacts />
               </div>
+            ) : currentPage === 2 ? (
+              /* Page 2: Newly Supplied 4th.png Invitation Artwork with object-fit: contain */
+              <div className="relative w-full h-full min-h-[100vh] h-[100dvh] flex items-center justify-center pt-[max(56px,calc(env(safe-area-inset-top,0px)+50px))] pb-[max(80px,calc(env(safe-area-inset-bottom,0px)+74px))] px-2 sm:px-4 overflow-hidden pointer-events-auto">
+                <img
+                  src="/images/4th.png"
+                  alt="साखरपुडा सोहळा - ची.सौ.कां. ललिता आणि ची. रवींद्र"
+                  className="w-full h-full max-h-full max-w-full object-contain object-center pointer-events-none drop-shadow-[0_16px_50px_rgba(0,0,0,0.95)]"
+                />
+              </div>
             ) : (
-              /* Pages 1 & 2: Full-screen exact artwork images */
+              /* Page 1: Full-screen exact artwork image */
               <img
                 src={pages[currentPage - 1].src}
                 alt={pages[currentPage - 1].alt}
