@@ -20,7 +20,7 @@ const FAMILY_CONTACTS: ContactPerson[] = [
     id: 2,
     name: 'सौ. उषा संतोष पवार',
     phone: '8928340652',
-    displayPhone: '8928340652',
+    displayPhone: '8928340658',
   },
 ];
 
